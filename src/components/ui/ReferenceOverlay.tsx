@@ -1,6 +1,6 @@
 export const ReferenceOverlay = () => {
   return (
-    <div className="absolute top-16 left-6 z-20 flex items-center gap-2 font-mono text-slate-800">
+    <div className="hidden sm:flex absolute top-16 left-6 z-20 items-center gap-2 font-mono text-slate-800">
       {/* Title pill */}
       <div className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white/95 backdrop-blur-md text-xs font-semibold text-slate-800 shadow-sm">
         Schematic Twin · sector-typical layout
