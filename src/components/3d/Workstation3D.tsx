@@ -26,19 +26,19 @@ export const Workstation3D = ({
 
   // Status color calculation
   let statusColor = '#10b981'; // Green (On benchmark)
-  let statusBadgeColor = 'bg-white/95 text-emerald-800 border-emerald-300 shadow-md';
+  let statusBadgeColor = 'bg-white text-emerald-800 border-emerald-300 shadow-sm';
 
   if (data.id === 'WS-102') {
     if (isStepDegraded) {
       statusColor = '#ef4444'; // Red (Hotspot)
-      statusBadgeColor = 'bg-white/95 text-rose-800 border-rose-400 animate-pulse shadow-md';
+      statusBadgeColor = 'bg-white text-rose-800 border-rose-400 animate-pulse shadow-sm';
     } else {
       statusColor = '#f59e0b'; // Yellow (Elevated)
-      statusBadgeColor = 'bg-white/95 text-amber-800 border-amber-400 shadow-md';
+      statusBadgeColor = 'bg-white text-amber-800 border-amber-400 shadow-sm';
     }
   } else if ((data.id === 'WS-105' || data.id === 'WS-108') && isStepReroute) {
     statusColor = '#0ea5e9'; // Sky Blue receiver
-    statusBadgeColor = 'bg-white/95 text-sky-800 border-sky-400 animate-pulse shadow-md';
+    statusBadgeColor = 'bg-white text-sky-800 border-sky-400 animate-pulse shadow-sm';
   }
 
   useFrame((state, delta) => {
@@ -180,11 +180,11 @@ export const Workstation3D = ({
         intensity={2.5}
       />
 
-      {/* Overhead Badge lowered and scaled to stay cleanly in frame */}
-      <Html position={[0, 2.6, 0]} center distanceFactor={30}>
-        <div className="cursor-pointer transition-all duration-300">
-          <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg border backdrop-blur-md font-mono text-[11px] font-bold ${statusBadgeColor}`}>
-            <span className="w-2 h-2 rounded-full" style={{ backgroundColor: statusColor }} />
+      {/* Overhead Badge - Fixed compact micro-badge with transform={false} and distanceFactor={60} so it NEVER shoots up or expands */}
+      <Html position={[0, 2.2, 0]} center distanceFactor={60} transform={false}>
+        <div className="pointer-events-none select-none">
+          <div className={`flex items-center gap-1 px-2 py-0.5 rounded-md border font-mono text-[10px] font-bold whitespace-nowrap ${statusBadgeColor}`}>
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: statusColor }} />
             <span>{data.name.split('(')[0]} - {data.capacity}%</span>
           </div>
         </div>

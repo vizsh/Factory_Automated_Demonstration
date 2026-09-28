@@ -111,23 +111,17 @@ export const OfficeCabin3D = ({ isStepRTS }: OfficeCabin3DProps) => {
         distance={10}
       />
 
-      {/* Overhead Glass Cabin Label - Clean Light Card */}
-      <Html position={[0, 4.2, 3.8]} center distanceFactor={18}>
-        <div
-          className={`p-2.5 rounded-xl border backdrop-blur-md font-mono text-xs font-bold transition-all shadow-xl ${
-            isStepRTS
-              ? 'bg-emerald-50 border-emerald-300 text-emerald-900 shadow-[0_0_20px_rgba(16,185,129,0.3)] animate-bounce'
-              : 'bg-white/95 border-slate-200 text-slate-800'
-          }`}
-        >
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping inline-block" />
-            <span>PLANT OPERATIONS CABIN / HUMAN AUTHORITY</span>
-          </div>
-          <div className="text-[10px] text-slate-600 font-sans mt-0.5">
-            {isStepRTS
-              ? 'Human Sign-off Authorized: Allocation Lock Released'
-              : 'Plant Manager & Maintenance Supervisor Control Desk'}
+      {/* Overhead Glass Cabin Label - Fixed distanceFactor={60} */}
+      <Html position={[0, 3.5, 3.8]} center distanceFactor={60} transform={false}>
+        <div className="pointer-events-none select-none">
+          <div
+            className={`px-2 py-1 rounded-md border font-mono text-[10px] font-bold shadow-md whitespace-nowrap ${
+              isStepRTS
+                ? 'bg-emerald-50 border-emerald-300 text-emerald-900'
+                : 'bg-white border-slate-200 text-slate-800'
+            }`}
+          >
+            <span>PLANT CONTROL CABIN / HUMAN AUTHORITY</span>
           </div>
         </div>
       </Html>

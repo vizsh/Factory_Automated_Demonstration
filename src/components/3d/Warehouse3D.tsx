@@ -46,35 +46,17 @@ export const Warehouse3D = ({ isStepProcurement }: Warehouse3DProps) => {
         <pointLight position={[0, 3.5, 0]} color="#a855f7" distance={8} intensity={3} />
       )}
 
-      <Html position={[0, 5.5, 0]} center distanceFactor={18}>
-        <div
-          className={`p-3 rounded-xl border backdrop-blur-md transition-all duration-500 font-mono shadow-xl ${
-            isStepProcurement
-              ? 'bg-purple-50/95 border-purple-300 text-purple-900 shadow-[0_0_25px_rgba(168,85,247,0.3)] animate-bounce'
-              : 'bg-white/95 border-slate-200 text-slate-800'
-          }`}
-        >
-          <div className="flex items-center justify-between gap-2 text-xs font-bold">
-            <span>BIN-A4: BRG-10023</span>
-            <span
-              className={`px-1.5 py-0.5 rounded text-[10px] ${
-                isStepProcurement ? 'bg-rose-100 text-rose-700 font-extrabold' : 'bg-emerald-100 text-emerald-800'
-              }`}
-            >
-              {isStepProcurement ? 'STOCKOUT (q = 0)' : 'STOCK: q = 4'}
-            </span>
+      <Html position={[0, 3.2, 0]} center distanceFactor={60} transform={false}>
+        <div className="pointer-events-none select-none">
+          <div
+            className={`px-2 py-1 rounded-md border backdrop-blur-md font-mono text-[10px] font-bold shadow-md whitespace-nowrap ${
+              isStepProcurement
+                ? 'bg-purple-50 text-purple-900 border-purple-300'
+                : 'bg-white text-slate-800 border-slate-200'
+            }`}
+          >
+            <span>BIN-A4: BRG-10023 ({isStepProcurement ? 'STOCKOUT q=0' : 'STOCK q=4'})</span>
           </div>
-
-          <div className="text-[10px] text-slate-500 mt-1">
-            Part: Precision Spindle Roller Bearing
-          </div>
-
-          {isStepProcurement && (
-            <div className="mt-2 text-[10px] text-purple-900 bg-purple-100/80 p-2 rounded-lg border border-purple-200 font-sans">
-              <div className="font-bold font-mono">AUTO PO CREATED: PR-AUTO-WS102</div>
-              <div>Vendor: Apex Motion (Lead: 8h)</div>
-            </div>
-          )}
         </div>
       </Html>
     </group>
