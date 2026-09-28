@@ -24,21 +24,21 @@ export const Workstation3D = ({
   const spindleRef = useRef<THREE.Mesh>(null);
   const lightRef = useRef<THREE.PointLight>(null);
 
-  // Status color calculation matching reference image
+  // Status color calculation
   let statusColor = '#10b981'; // Green (On benchmark)
-  let statusBadgeColor = 'bg-emerald-500/20 text-emerald-300 border-emerald-500/50';
+  let statusBadgeColor = 'bg-emerald-50 text-emerald-800 border-emerald-300 shadow-sm';
 
   if (data.id === 'WS-102') {
     if (isStepDegraded) {
       statusColor = '#ef4444'; // Red (Hotspot)
-      statusBadgeColor = 'bg-red-500/30 text-red-300 border-red-500/80 animate-pulse';
+      statusBadgeColor = 'bg-rose-50 text-rose-800 border-rose-300 animate-pulse shadow-sm';
     } else {
       statusColor = '#f59e0b'; // Yellow (Elevated)
-      statusBadgeColor = 'bg-amber-500/30 text-amber-300 border-amber-500/80';
+      statusBadgeColor = 'bg-amber-50 text-amber-800 border-amber-300 shadow-sm';
     }
   } else if ((data.id === 'WS-105' || data.id === 'WS-108') && isStepReroute) {
-    statusColor = '#00f0ff'; // Cyan receiver
-    statusBadgeColor = 'bg-cyan-500/30 text-cyan-300 border-cyan-400 animate-pulse';
+    statusColor = '#0ea5e9'; // Sky Blue receiver
+    statusBadgeColor = 'bg-sky-50 text-sky-800 border-sky-300 animate-pulse shadow-sm';
   }
 
   useFrame((state, delta) => {
@@ -62,7 +62,7 @@ export const Workstation3D = ({
     }
   });
 
-  const isBoiler = data.id === 'WS-102'; // Render WS-102 as heavy steam boiler / reactor unit
+  const isBoiler = data.id === 'WS-102';
 
   return (
     <group
@@ -73,7 +73,7 @@ export const Workstation3D = ({
         onSelect(data);
       }}
     >
-      {/* Ground Aura Ring matching reference screenshot */}
+      {/* Ground Aura Ring matching light reference screenshot */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.03, 0]}>
         <ringGeometry args={[2.2, 2.4, 32]} />
         <meshBasicMaterial color={statusColor} transparent opacity={0.8} />
@@ -84,14 +84,14 @@ export const Workstation3D = ({
       </mesh>
 
       {isBoiler ? (
-        /* Heavy Steam Boiler / Pressure Vessel Geometry for WS-102 */
+        /* Heavy Steam Boiler / Pressure Vessel Geometry for WS-102 - Light Slate Metallic */
         <group>
           {/* Cylindrical Main Vessel */}
           <mesh position={[0, 1.6, 0]} rotation={[0, 0, Math.PI / 2]} castShadow receiveShadow>
             <cylinderGeometry args={[1.2, 1.2, 4.2, 24]} />
             <meshStandardMaterial
-              color={isSelected ? '#475569' : '#334155'}
-              metalness={0.8}
+              color={isSelected ? '#64748b' : '#94a3b8'}
+              metalness={0.6}
               roughness={0.3}
             />
           </mesh>
@@ -99,45 +99,45 @@ export const Workstation3D = ({
           {/* End Caps */}
           <mesh position={[-2.1, 1.6, 0]} castShadow>
             <sphereGeometry args={[1.2, 24, 24, 0, Math.PI * 2, 0, Math.PI / 2]} />
-            <meshStandardMaterial color="#1e293b" metalness={0.8} />
+            <meshStandardMaterial color="#64748b" metalness={0.6} />
           </mesh>
 
           {/* Support Cradles */}
           <mesh position={[-1.2, 0.4, 0]}>
             <boxGeometry args={[0.5, 0.8, 2.6]} />
-            <meshStandardMaterial color="#0f172a" />
+            <meshStandardMaterial color="#334155" />
           </mesh>
           <mesh position={[1.2, 0.4, 0]}>
             <boxGeometry args={[0.5, 0.8, 2.6]} />
-            <meshStandardMaterial color="#0f172a" />
+            <meshStandardMaterial color="#334155" />
           </mesh>
 
           {/* Exhaust Stack Flue */}
           <mesh position={[-0.8, 3.2, 0]} castShadow>
             <cylinderGeometry args={[0.3, 0.3, 2.2, 16]} />
-            <meshStandardMaterial color="#1e293b" metalness={0.7} />
+            <meshStandardMaterial color="#475569" metalness={0.6} />
           </mesh>
 
           {/* Smoke/Steam rising from stack when warning or degraded */}
           <SmokeParticles position={[-0.8, 4.3, 0]} active={true} />
         </group>
       ) : (
-        /* Heavy CNC Lathe Machine Geometry */
+        /* Heavy CNC Lathe Machine Geometry - Light Slate & Silver */
         <group>
           {/* Base Bed Frame */}
           <mesh position={[0, 0.5, 0]} castShadow receiveShadow>
             <boxGeometry args={[3.6, 1.0, 2.4]} />
             <meshStandardMaterial
-              color={isSelected ? '#1e293b' : '#0f172a'}
-              metalness={0.7}
-              roughness={0.4}
+              color={isSelected ? '#475569' : '#cbd5e1'}
+              metalness={0.5}
+              roughness={0.3}
             />
           </mesh>
 
           {/* Headstock Motor Housing */}
           <mesh position={[-1.2, 1.6, 0]} castShadow>
             <boxGeometry args={[1.2, 1.4, 2.2]} />
-            <meshStandardMaterial color="#1e293b" metalness={0.8} roughness={0.3} />
+            <meshStandardMaterial color="#94a3b8" metalness={0.6} roughness={0.3} />
           </mesh>
 
           {/* Transparent Protective Sliding Glass Enclosure */}
@@ -145,7 +145,7 @@ export const Workstation3D = ({
             <boxGeometry args={[2.0, 1.6, 2.0]} />
             <meshPhysicalMaterial
               color="#0ea5e9"
-              transmission={0.85}
+              transmission={0.8}
               opacity={0.6}
               transparent
               roughness={0.1}
@@ -155,7 +155,7 @@ export const Workstation3D = ({
           {/* Internal Spindle Chuck */}
           <mesh ref={spindleRef} position={[-0.5, 1.6, 0]} rotation={[0, 0, Math.PI / 2]}>
             <cylinderGeometry args={[0.45, 0.45, 0.3, 16]} />
-            <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.1} />
+            <meshStandardMaterial color="#cbd5e1" metalness={0.8} roughness={0.2} />
           </mesh>
         </group>
       )}
@@ -163,7 +163,7 @@ export const Workstation3D = ({
       {/* Top Status Light Beacon Pole */}
       <mesh position={[1.4, 2.8, 0.9]}>
         <cylinderGeometry args={[0.04, 0.04, 0.8, 8]} />
-        <meshStandardMaterial color="#475569" />
+        <meshStandardMaterial color="#94a3b8" />
       </mesh>
 
       {/* Glowing Status Light Beacon */}
@@ -180,10 +180,10 @@ export const Workstation3D = ({
         intensity={2.5}
       />
 
-      {/* Overhead Badge Overhead matching reference screenshot */}
+      {/* Overhead Badge Overhead matching light reference screenshot */}
       <Html position={[0, 4.3, 0]} center distanceFactor={18}>
         <div className="cursor-pointer transition-all duration-300">
-          <div className={`flex items-center gap-1.5 px-3 py-1 rounded-lg border backdrop-blur-md font-mono text-xs font-bold shadow-xl ${statusBadgeColor}`}>
+          <div className={`flex items-center gap-1.5 px-3 py-1 rounded-lg border backdrop-blur-md font-mono text-xs font-bold shadow-md ${statusBadgeColor}`}>
             <span className="w-2 h-2 rounded-full" style={{ backgroundColor: statusColor }} />
             <span>{data.name.split('(')[0]} - {data.capacity}%</span>
           </div>

@@ -38,25 +38,25 @@ export const FactoryScene = ({
   const isRTS = currentStep.id === 6;
 
   return (
-    <div className="relative w-full h-full bg-[#080b11] overflow-hidden">
+    <div className="relative w-full h-full bg-[#f8fafc] overflow-hidden">
       <Canvas
         shadows
         camera={{ position: currentStep.cameraPosition, fov: 45 }}
         gl={{ antialias: true, alpha: false }}
       >
-        <color attach="background" args={['#080b11']} />
-        <fog attach="fog" args={['#080b11', 25, 80]} />
+        <color attach="background" args={['#f8fafc']} />
+        <fog attach="fog" args={['#f8fafc', 35, 95]} />
 
-        {/* Industrial Ambient & Directional Lighting */}
-        <ambientLight intensity={0.5} />
+        {/* Studio Lighting setup */}
+        <ambientLight intensity={0.95} />
         <directionalLight
-          position={[25, 40, 25]}
-          intensity={1.5}
+          position={[25, 45, 25]}
+          intensity={1.6}
           castShadow
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
         />
-        <pointLight position={[0, 20, 0]} intensity={1.2} color="#0284c7" />
+        <pointLight position={[0, 25, 0]} intensity={1.3} color="#0284c7" />
 
         {/* Dynamic Camera Controller */}
         <CameraRig mode={mode} currentStep={currentStep} controlsRef={controlsRef} />

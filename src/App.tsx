@@ -57,7 +57,7 @@ export function App() {
   };
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-slate-950 font-sans select-none">
+    <div className="relative w-screen h-screen overflow-hidden bg-slate-50 font-sans select-none text-slate-900">
       {/* Top Header Navigation */}
       <HeaderNav
         mode={mode}

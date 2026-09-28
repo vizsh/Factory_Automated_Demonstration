@@ -20,18 +20,18 @@ export const FactoryStructure = () => {
 
   return (
     <group>
-      {/* Vertical Steel Structural I-Beam Columns */}
+      {/* Vertical Steel Structural I-Beam Columns - Light Slate Metallic */}
       {columns.map(([x, z], idx) => (
         <group key={idx} position={[x, 0, z]}>
           {/* Main vertical pillar */}
           <mesh position={[0, 6, 0]} castShadow>
             <boxGeometry args={[0.5, 12, 0.5]} />
-            <meshStandardMaterial color="#1e293b" metalness={0.8} roughness={0.3} />
+            <meshStandardMaterial color="#94a3b8" metalness={0.6} roughness={0.3} />
           </mesh>
           {/* Base plate */}
           <mesh position={[0, 0.2, 0]}>
             <boxGeometry args={[1.2, 0.4, 1.2]} />
-            <meshStandardMaterial color="#475569" metalness={0.7} />
+            <meshStandardMaterial color="#cbd5e1" metalness={0.5} />
           </mesh>
         </group>
       ))}
@@ -40,7 +40,7 @@ export const FactoryStructure = () => {
       {[-14, 0, 14].map((z, idx) => (
         <mesh key={idx} position={[0, 12, z]} castShadow>
           <boxGeometry args={[45, 0.4, 0.4]} />
-          <meshStandardMaterial color="#1e293b" metalness={0.8} roughness={0.3} />
+          <meshStandardMaterial color="#64748b" metalness={0.6} roughness={0.3} />
         </mesh>
       ))}
 
@@ -48,7 +48,7 @@ export const FactoryStructure = () => {
       {[-22, -8, 8, 22].map((x, idx) => (
         <mesh key={idx} position={[x, 12, 0]} castShadow>
           <boxGeometry args={[0.4, 0.4, 28.5]} />
-          <meshStandardMaterial color="#1e293b" metalness={0.8} roughness={0.3} />
+          <meshStandardMaterial color="#64748b" metalness={0.6} roughness={0.3} />
         </mesh>
       ))}
 
@@ -57,11 +57,11 @@ export const FactoryStructure = () => {
         <group key={idx} position={[x, 11.5, 0]}>
           <mesh rotation={[0, 0, Math.PI / 6]} position={[-3, 0, 0]}>
             <boxGeometry args={[6, 0.2, 0.2]} />
-            <meshStandardMaterial color="#334155" />
+            <meshStandardMaterial color="#94a3b8" />
           </mesh>
           <mesh rotation={[0, 0, -Math.PI / 6]} position={[3, 0, 0]}>
             <boxGeometry args={[6, 0.2, 0.2]} />
-            <meshStandardMaterial color="#334155" />
+            <meshStandardMaterial color="#94a3b8" />
           </mesh>
         </group>
       ))}
@@ -72,12 +72,12 @@ export const FactoryStructure = () => {
           {/* Suspension wire */}
           <mesh position={[0, 1, 0]}>
             <cylinderGeometry args={[0.02, 0.02, 2, 8]} />
-            <meshStandardMaterial color="#64748b" />
+            <meshStandardMaterial color="#94a3b8" />
           </mesh>
           {/* Cone Lamp Fixture */}
           <mesh position={[0, 0, 0]}>
             <coneGeometry args={[0.6, 0.6, 16, 1, true]} />
-            <meshStandardMaterial color="#334155" side={2} />
+            <meshStandardMaterial color="#cbd5e1" side={2} />
           </mesh>
           {/* Glowing Bulb */}
           <mesh position={[0, -0.1, 0]}>
@@ -90,25 +90,24 @@ export const FactoryStructure = () => {
             target-position={[lx, 0, lz]}
             angle={Math.PI / 4}
             penumbra={0.6}
-            intensity={2.5}
+            intensity={2.8}
             color="#fffbeb"
-            distance={20}
+            distance={22}
           />
         </group>
       ))}
 
-      {/* Overhead Industrial Piping System */}
-      {/* Main Longitudinal Steam/Fluid Pipe */}
+      {/* Overhead Industrial Piping System - Light Silver Pipes */}
       <mesh position={[0, 9.5, -4]} rotation={[0, 0, Math.PI / 2]}>
         <cylinderGeometry args={[0.25, 0.25, 42, 16]} />
-        <meshStandardMaterial color="#64748b" metalness={0.7} roughness={0.3} />
+        <meshStandardMaterial color="#cbd5e1" metalness={0.7} roughness={0.2} />
       </mesh>
 
       {/* Secondary Feeder Pipes */}
       {[-12, -4, 4, 12].map((x, idx) => (
         <mesh key={idx} position={[x, 7.5, -5]} rotation={[Math.PI / 2, 0, 0]}>
           <cylinderGeometry args={[0.15, 0.15, 4, 12]} />
-          <meshStandardMaterial color="#475569" metalness={0.6} />
+          <meshStandardMaterial color="#94a3b8" metalness={0.6} />
         </mesh>
       ))}
     </group>
