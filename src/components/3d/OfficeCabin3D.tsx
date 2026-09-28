@@ -1,5 +1,3 @@
-import { Html } from '@react-three/drei';
-
 interface OfficeCabin3DProps {
   isStepRTS: boolean;
 }
@@ -110,21 +108,6 @@ export const OfficeCabin3D = ({ isStepRTS }: OfficeCabin3DProps) => {
         color={isStepRTS ? '#34d399' : '#fef08a'}
         distance={10}
       />
-
-      {/* Overhead Glass Cabin Label - Fixed distanceFactor={60} */}
-      <Html position={[0, 3.5, 3.8]} center distanceFactor={60} transform={false}>
-        <div className="pointer-events-none select-none">
-          <div
-            className={`px-2 py-1 rounded-md border font-mono text-[10px] font-bold shadow-md whitespace-nowrap ${
-              isStepRTS
-                ? 'bg-emerald-50 border-emerald-300 text-emerald-900'
-                : 'bg-white border-slate-200 text-slate-800'
-            }`}
-          >
-            <span>PLANT CONTROL CABIN / HUMAN AUTHORITY</span>
-          </div>
-        </div>
-      </Html>
     </group>
   );
 };

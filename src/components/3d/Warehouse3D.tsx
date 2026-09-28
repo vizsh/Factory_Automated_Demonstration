@@ -1,5 +1,3 @@
-import { Html } from '@react-three/drei';
-
 interface Warehouse3DProps {
   isStepProcurement: boolean;
 }
@@ -45,20 +43,6 @@ export const Warehouse3D = ({ isStepProcurement }: Warehouse3DProps) => {
       {isStepProcurement && (
         <pointLight position={[0, 3.5, 0]} color="#a855f7" distance={8} intensity={3} />
       )}
-
-      <Html position={[0, 3.2, 0]} center distanceFactor={60} transform={false}>
-        <div className="pointer-events-none select-none">
-          <div
-            className={`px-2 py-1 rounded-md border backdrop-blur-md font-mono text-[10px] font-bold shadow-md whitespace-nowrap ${
-              isStepProcurement
-                ? 'bg-purple-50 text-purple-900 border-purple-300'
-                : 'bg-white text-slate-800 border-slate-200'
-            }`}
-          >
-            <span>BIN-A4: BRG-10023 ({isStepProcurement ? 'STOCKOUT q=0' : 'STOCK q=4'})</span>
-          </div>
-        </div>
-      </Html>
     </group>
   );
 };

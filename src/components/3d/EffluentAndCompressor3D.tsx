@@ -1,5 +1,3 @@
-import { Html } from '@react-three/drei';
-
 export const EffluentAndCompressor3D = () => {
   return (
     <group>
@@ -34,14 +32,6 @@ export const EffluentAndCompressor3D = () => {
           <boxGeometry args={[1.2, 1.6, 1.6]} />
           <meshStandardMaterial color="#334155" />
         </mesh>
-
-        {/* Overhead Badge */}
-        <Html position={[0, 3.8, 0]} center distanceFactor={18}>
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg border border-emerald-500/50 bg-emerald-950/80 text-emerald-300 font-mono text-xs font-bold shadow-xl backdrop-blur-md">
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            <span>Effluent Treatment Plant - 5%</span>
-          </div>
-        </Html>
       </group>
 
       {/* 2. Compressor House (Center Back Cell: [2, 0, 6]) */}
@@ -63,14 +53,6 @@ export const EffluentAndCompressor3D = () => {
           <ringGeometry args={[2.4, 2.6, 32]} />
           <meshBasicMaterial color="#10b981" transparent opacity={0.8} />
         </mesh>
-
-        {/* Overhead Badge */}
-        <Html position={[0, 3.8, 0]} center distanceFactor={18}>
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg border border-emerald-500/50 bg-emerald-950/80 text-emerald-300 font-mono text-xs font-bold shadow-xl backdrop-blur-md">
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            <span>Compressor House - 2%</span>
-          </div>
-        </Html>
       </group>
     </group>
   );

@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Html } from '@react-three/drei';
 import * as THREE from 'three';
 import type { Workstation } from '../../types/manufactureFlow';
 import { SmokeParticles } from './SmokeParticles';
@@ -24,21 +23,17 @@ export const Workstation3D = ({
   const spindleRef = useRef<THREE.Mesh>(null);
   const lightRef = useRef<THREE.PointLight>(null);
 
-  // Status color calculation
+  // Status color calculation matching reference image
   let statusColor = '#10b981'; // Green (On benchmark)
-  let statusBadgeColor = 'bg-white text-emerald-800 border-emerald-300 shadow-sm';
 
   if (data.id === 'WS-102') {
     if (isStepDegraded) {
       statusColor = '#ef4444'; // Red (Hotspot)
-      statusBadgeColor = 'bg-white text-rose-800 border-rose-400 animate-pulse shadow-sm';
     } else {
       statusColor = '#f59e0b'; // Yellow (Elevated)
-      statusBadgeColor = 'bg-white text-amber-800 border-amber-400 shadow-sm';
     }
   } else if ((data.id === 'WS-105' || data.id === 'WS-108') && isStepReroute) {
     statusColor = '#0ea5e9'; // Sky Blue receiver
-    statusBadgeColor = 'bg-white text-sky-800 border-sky-400 animate-pulse shadow-sm';
   }
 
   useFrame((state, delta) => {
@@ -84,7 +79,7 @@ export const Workstation3D = ({
       </mesh>
 
       {isBoiler ? (
-        /* Heavy Steam Boiler / Pressure Vessel Geometry for WS-102 - Light Slate Metallic */
+        /* Heavy Steam Boiler / Pressure Vessel Geometry for WS-102 */
         <group>
           {/* Cylindrical Main Vessel */}
           <mesh position={[0, 1.6, 0]} rotation={[0, 0, Math.PI / 2]} castShadow receiveShadow>
@@ -122,7 +117,7 @@ export const Workstation3D = ({
           <SmokeParticles position={[-0.8, 4.3, 0]} active={true} />
         </group>
       ) : (
-        /* Heavy CNC Lathe Machine Geometry - Light Slate & Silver */
+        /* Heavy CNC Lathe Machine Geometry */
         <group>
           {/* Base Bed Frame */}
           <mesh position={[0, 0.5, 0]} castShadow receiveShadow>
@@ -179,16 +174,6 @@ export const Workstation3D = ({
         distance={6}
         intensity={2.5}
       />
-
-      {/* Overhead Badge - Fixed compact micro-badge with transform={false} and distanceFactor={60} so it NEVER shoots up or expands */}
-      <Html position={[0, 2.2, 0]} center distanceFactor={60} transform={false}>
-        <div className="pointer-events-none select-none">
-          <div className={`flex items-center gap-1 px-2 py-0.5 rounded-md border font-mono text-[10px] font-bold whitespace-nowrap ${statusBadgeColor}`}>
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: statusColor }} />
-            <span>{data.name.split('(')[0]} - {data.capacity}%</span>
-          </div>
-        </div>
-      </Html>
     </group>
   );
 };

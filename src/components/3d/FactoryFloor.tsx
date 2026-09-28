@@ -1,5 +1,3 @@
-import { Html } from '@react-three/drei';
-
 export const FactoryFloor = () => {
   return (
     <group>
@@ -35,31 +33,6 @@ export const FactoryFloor = () => {
         <planeGeometry args={[12, 18]} />
         <meshBasicMaterial color="#d97706" wireframe opacity={0.3} transparent />
       </mesh>
-
-      {/* Cell Holographic Overhead Labels */}
-      <Html position={[-3, 3, -9.5]} center distanceFactor={20}>
-        <div className="px-2.5 py-1 rounded-md border border-sky-300 bg-white/90 text-[11px] font-mono text-sky-800 font-bold tracking-wider whitespace-nowrap shadow-md shadow-sky-100 backdrop-blur-sm">
-          MACHINING LINE L-03 / PRIMARY PRODUCTION
-        </div>
-      </Html>
-
-      <Html position={[-1, 3, 9.5]} center distanceFactor={20}>
-        <div className="px-2.5 py-1 rounded-md border border-blue-300 bg-white/90 text-[11px] font-mono text-blue-800 font-bold tracking-wider whitespace-nowrap shadow-md shadow-blue-100 backdrop-blur-sm">
-          QUALIFIED LINE L-04 / REROUTE CELL
-        </div>
-      </Html>
-
-      <Html position={[17, 3.5, -9]} center distanceFactor={20}>
-        <div className="px-2.5 py-1 rounded-md border border-purple-300 bg-white/90 text-[11px] font-mono text-purple-800 font-bold tracking-wider whitespace-nowrap shadow-md shadow-purple-100 backdrop-blur-sm">
-          ASRS AUTOMATED WAREHOUSE
-        </div>
-      </Html>
-
-      <Html position={[-17, 3.5, -9]} center distanceFactor={20}>
-        <div className="px-2.5 py-1 rounded-md border border-amber-300 bg-white/90 text-[11px] font-mono text-amber-800 font-bold tracking-wider whitespace-nowrap shadow-md shadow-amber-100 backdrop-blur-sm">
-          DISPATCH & LOGISTICS CELL
-        </div>
-      </Html>
     </group>
   );
 };
