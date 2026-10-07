@@ -30,6 +30,7 @@ export const FactoryScene = ({
   onSelectWs
 }: FactorySceneProps) => {
   const controlsRef = useRef<OrbitControlsImpl | null>(null);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
 
   const isDegraded = currentStep.id >= 2 && currentStep.id !== 6;
   const isProcurement = currentStep.id === 3;
@@ -41,7 +42,7 @@ export const FactoryScene = ({
     <div className="relative w-full h-full bg-[#f8fafc] overflow-hidden">
       <Canvas
         shadows
-        camera={{ position: currentStep.cameraPosition, fov: 45 }}
+        camera={{ position: currentStep.cameraPosition, fov: isMobile ? 56 : 45 }}
         gl={{ antialias: true, alpha: false }}
       >
         <color attach="background" args={['#f8fafc']} />
